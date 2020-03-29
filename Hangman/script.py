@@ -28,7 +28,6 @@ while c == 'y':
         if failed == 0:
             print('\nCongratulations, You Win!!!')
             print('The word is: ' + word)
-            print()
             break
         print()
 
