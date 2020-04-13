@@ -25,15 +25,16 @@ class Game:
         self.RESULT_C = (255,70,70)
         
         pygame.init()
-        self.open_img = pygame.image.load('launch_background.jpg')
+        pygame.font.init()
+        self.open_img = pygame.image.load('assets/launch_background.jpg')
         self.open_img = pygame.transform.scale(self.open_img, (self.w,self.h))
 
-        self.bg = pygame.image.load('background1.jpg')
+        self.bg = pygame.image.load('assets/background1.jpg')
         self.bg = pygame.transform.scale(self.bg, (self.w,self.h))
 
         self.screen = pygame.display.set_mode((self.w,self.h))
         pygame.display.set_caption('The Flash - Typing Speed Checker')
-        icon = pygame.image.load('logo.png')
+        icon = pygame.image.load('assets/logo.png')
         pygame.display.set_icon(icon)
         
     def draw_text(self, screen, msg, y ,fsize, color):
@@ -44,7 +45,7 @@ class Game:
         pygame.display.update()
         
     def get_sentence(self):
-        sentences = json.loads(open('sentences.json').read())
+        sentences = json.loads(open('assets/sentences.json').read())
         sentence = random.choice(sentences)
         return sentence
 
@@ -70,7 +71,7 @@ class Game:
                 
             self.results = f'Time: {round(self.total_time)} secs   Accuracy: {round(self.accuracy)}%   Wpm: {round(self.wpm)}'
             # draw icon image
-            self.time_img = pygame.image.load('icon.png')
+            self.time_img = pygame.image.load('assets/icon.png')
             self.time_img = pygame.transform.scale(self.time_img, (120,120))
             screen.blit(self.time_img, (int(self.w/2-60),self.h-140))
             self.draw_text(screen,"Reset", self.h - 90, 26, (100,100,100))
@@ -162,4 +163,5 @@ class Game:
         self.draw_text(self.screen, note, 490, 20,self.RESULT_C)
         pygame.display.update()
 
+# if __name__ == '__main__':
 Game().run()
